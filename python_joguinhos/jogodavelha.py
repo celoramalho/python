@@ -10,8 +10,10 @@ def tabuleiro(x, y):
         tabuleiro_xisoubolinha = tabuleiro_xisoubolinha + [linha]
 
 
-def bot_escolha(tabuleiro):
+def bot_escolha_aleatoria(tabuleiro):
     marcado = False
+    
+    print("VEZ DO COMPUTADOR")
 
     while(not marcado):
         escolha_horizontal = random.randrange(3)
@@ -26,13 +28,19 @@ def bot_escolha(tabuleiro):
             marcado = True
         else:
             print("tentou")
+
+    print(tabuleiro[0])
+    print(tabuleiro[1])
+    print(tabuleiro[2])
+
     return tabuleiro
 
 def jogador_escolha(tabuleiro):
     marcado = False
 
+    print("SUA VEZ")
+
     while(not marcado):
-        print("0 ->vazio\n1 -> jogado\n2 -> Computador")
         print(tabuleiro[0])
         print(tabuleiro[1])
         print(tabuleiro[2])
@@ -58,6 +66,60 @@ def verifica_posicao_ocupada(x,y, tabuleiro):
     else:
         return False
 
+def verifica_jogo_acabou(tabuleiro):
+    ainda_tem_espaco = 0
+    sequencia_horizontal_jogador = 0
+    sequencia_horizontal_computador = 0
+    sequencia_vertical_jogador = [0, 0, 0]
+    sequencia_vertical_computador = [0, 0, 0]
+    sequencia_diagonal = 0
+    ganhou = False
+    x = 0
+
+    for i in range(0, 3):
+        for j in range(0, 3):
+
+            if (tabuleiro[i][j] == 0):
+                ainda_tem_espaco += 1
+                sequencia_horizontal_jogador = 0
+                sequencia_horizontal_computador = 0
+
+            elif(tabuleiro[i][j] == 1):
+                sequencia_horizontal_computador = 0
+                sequencia_horizontal_jogador += 1
+                sequencia_vertical_jogador[j] += 1
+
+            elif(tabuleiro[i][j] == 2):
+                sequencia_horizontal_jogador = 0
+                sequencia_horizontal_computador += 1
+                sequencia_vertical_computador[j] += 1
+
+            if (sequencia_horizontal_computador == 3 or sequencia_horizontal_jogador == 3):
+                ganhador = tabuleiro[i][j]
+                ganhou = True
+                print("O ganhador foi o", ganhador)
+        if (ganhou):
+            break
+
+        
+    while(x < 3):
+        if(sequencia_vertical_jogador[x] == 3):
+            ganhador = 1
+            ganhou = True
+            print("O ganhador foi o", ganhador)
+        elif(sequencia_vertical_computador[x] == 3):
+            ganhador = 2
+            ganhou = True
+            print("O ganhador foi o", ganhador)
+        x += 1
+
+        
+    # print("Ainda tem {} espaços pra marcar".format(ainda_tem_espaco))
+    if (ainda_tem_espaco == 0 or ganhou):
+        return True
+    else:
+        return False
+
 #def tk_interface():
 
 def jogar():
@@ -66,7 +128,14 @@ def jogar():
 
     while(not acabou):
         tabuleiro_xisoubolinha = jogador_escolha(tabuleiro_xisoubolinha)
-        tabuleiro_xisoubolinha = bot_escolha(tabuleiro_xisoubolinha)
+
+        acabou = verifica_jogo_acabou(tabuleiro_xisoubolinha)
+        
+        if(not acabou):
+            tabuleiro_xisoubolinha = bot_escolha_aleatoria(tabuleiro_xisoubolinha)
+            acabou = verifica_jogo_acabou(tabuleiro_xisoubolinha)
+        else:
+            print("Fim de jogo")
 
 
 if (__name__ == "__main__"):
