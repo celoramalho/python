@@ -4,13 +4,12 @@ Banheiro
 Caatinga
 Cachorro
 Campeonato
-Capricórnio
 Catapora
 Corrupção
 Crepúsculo
 Forca
 Galaxia
-História
+Historia
 Menta
 Moeda
 Oração
@@ -19,8 +18,8 @@ Palavra
 Pedreiro
 Pneumonia
 Pulmao
-Indentação
-Programação
+Indentar
+Programaçao
 Codigo
 Computador
 Processador
@@ -33,10 +32,10 @@ Escrever
 Variavel
 Objeto
 Classe
-Orientação
+Orientado
 Estrutrura
 Condicional
-Repetição
+Repeticao
 Matriz
 Recursiva
 React
@@ -65,7 +64,6 @@ Geleia
 Girafa
 Janela
 Limonada
-Mãe
 Meia
 Noite
 Oculos
