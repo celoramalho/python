@@ -1,8 +1,0 @@
-#pc info, gpu, memoria ram, armazenamento(ssd e/ou hdd)
-
-
-Get-ComputerInfo
-Get-NetAdapter
-wmic path win32_VideoController get name
-wmic memorychip list full
-get-physicaldisk | format-table -autosize
